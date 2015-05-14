@@ -90,9 +90,14 @@ class Stickers:
         tube2 -> Second tube to combine
         tube_destination -> destination tube for the combination
         '''
+        t1 = self.tubes[tube1] if tube1 in self.tubes else []
+        t2 = self.tubes[tube2] if tube2 in self.tubes else []
 
-        result_tube = self.tubes[tube1] + self.tubes[tube2]
-        del(self.tubes[tube2])
+        result_tube = t1 + t2
+
+        if tube2 in self.tubes:
+            del(self.tubes[tube2])
+
         if tube_destination == None:
             tube_destination = tube1
         else:
@@ -107,7 +112,8 @@ class Stickers:
 
         tube -> the tube label
         '''
-        del(self.tubes[tube])
+        if tube in self.tubes:
+            del(self.tubes[tube])
         print('disc:\t', self.tubes)
 
     def display(self):
